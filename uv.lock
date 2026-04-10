@@ -761,7 +761,7 @@ wheels = [
 
 [[package]]
 name = "huggingface-hub"
-version = "1.9.0"
+version = "1.10.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "filelock" },
@@ -774,9 +774,9 @@ dependencies = [
     { name = "typer" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/88/bb/62c7aa86f63a05e2f9b96642fdef9b94526a23979820b09f5455deff4983/huggingface_hub-1.9.0.tar.gz", hash = "sha256:0ea5be7a56135c91797cae6ad726e38eaeb6eb4b77cefff5c9d38ba0ecf874f7", size = 750326, upload-time = "2026-04-03T08:35:55.888Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/12/14/6a5fb1eafd6a2a44a821681b3781f349d249db09b615cf2d23cc3d580e4a/huggingface_hub-1.10.0.tar.gz", hash = "sha256:f803c3aae2dc98515a4341a0ce310b4e6b96ac557bb4b5fb4a77bcf525026d5b", size = 757492, upload-time = "2026-04-09T13:00:55.788Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/73/37/0d15d16150e1829f3e90962c99f28257f6de9e526a680b4c6f5acdb54fd2/huggingface_hub-1.9.0-py3-none-any.whl", hash = "sha256:2999328c058d39fd19ab748dd09bd4da2fbaa4f4c1ddea823eab103051e14a1f", size = 637355, upload-time = "2026-04-03T08:35:53.897Z" },
+    { url = "https://files.pythonhosted.org/packages/00/f5/7b6362580f2bac447a816352b2c53a2f4461683ffea2862a5f14b44b3b14/huggingface_hub-1.10.0-py3-none-any.whl", hash = "sha256:012a6a9177e861147b63d11da1aed58131fb7cbf7e3cd64ad6f154cb400f00c9", size = 641856, upload-time = "2026-04-09T13:00:54.243Z" },
 ]
 
 [[package]]
@@ -1019,11 +1019,11 @@ dev = [
 requires-dist = [
     { name = "accelerate", specifier = "==1.13.0" },
     { name = "datasets", specifier = "==4.8.4" },
-    { name = "huggingface-hub", specifier = "==1.9.0" },
+    { name = "huggingface-hub", specifier = "==1.10.0" },
     { name = "torch", specifier = "==2.11.0" },
     { name = "torchcodec", specifier = "==0.11.0" },
-    { name = "trackio", extras = ["gpu"], specifier = "==0.20.2" },
-    { name = "transformers", specifier = "==5.5.0" },
+    { name = "trackio", extras = ["gpu"], specifier = "==0.21.2" },
+    { name = "transformers", specifier = "==5.5.3" },
 ]
 
 [package.metadata.requires-dev]
@@ -2014,7 +2014,7 @@ wheels = [
 
 [[package]]
 name = "trackio"
-version = "0.20.2"
+version = "0.21.2"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "gradio", extra = ["oauth"] },
@@ -2027,7 +2027,7 @@ dependencies = [
     { name = "pydub" },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/44/24/6f76a40dad6cfd420943b04a9c6d45ff05ebfa1f7203d0771a2abc3de317/trackio-0.20.2-py3-none-any.whl", hash = "sha256:8934715dca1e3ab8f4e9fe0dcf837a4393ab24f7d576e5f22dd65dc139482098", size = 1484134, upload-time = "2026-03-30T18:17:42.345Z" },
+    { url = "https://files.pythonhosted.org/packages/14/92/8c41c65601008a9e6a473da0901f271ceca027d51598cd34862efc711629/trackio-0.21.2-py3-none-any.whl", hash = "sha256:38828be1c8b7f18b9b7ec6bb80e4b6901136e940110d84c1c4f2b85011bcdab1", size = 1491574, upload-time = "2026-04-09T19:17:53.708Z" },
 ]
 
 [package.optional-dependencies]
@@ -2047,7 +2047,7 @@ wheels = [
 
 [[package]]
 name = "transformers"
-version = "5.5.0"
+version = "5.5.3"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "huggingface-hub" },
@@ -2060,9 +2060,9 @@ dependencies = [
     { name = "tqdm" },
     { name = "typer" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/ff/9d/fb46e729b461985f41a5740167688b924a4019141e5c164bea77548d3d9e/transformers-5.5.0.tar.gz", hash = "sha256:c8db656cf51c600cd8c75f06b20ef85c72e8b8ff9abc880c5d3e8bc70e0ddcbd", size = 8237745, upload-time = "2026-04-02T16:13:08.113Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/af/35/cd5b0d1288e65d2c12db4ce84c1ec1074f7ee9bced040de6c9d69e70d620/transformers-5.5.3.tar.gz", hash = "sha256:3f60128e840b40d352655903552e1eed4f94ed49369a4d43e1bc067bd32d3f50", size = 8226047, upload-time = "2026-04-09T15:52:56.231Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/e7/28/35f7411ff80a3640c1f4fc907dcbb6a65061ebb82f66950e38bfc9f7f740/transformers-5.5.0-py3-none-any.whl", hash = "sha256:821a9ff0961abbb29eb1eb686d78df1c85929fdf213a3fe49dc6bd94f9efa944", size = 10245591, upload-time = "2026-04-02T16:13:03.462Z" },
+    { url = "https://files.pythonhosted.org/packages/a1/0b/f8524551ab2d896dfaca74ddb70a4453d515bbf4ab5451c100c7788ae155/transformers-5.5.3-py3-none-any.whl", hash = "sha256:e48f3ec31dd96505e96e66b63a1e43e1ad7a65749e108d9227caaf51051cdb02", size = 10236257, upload-time = "2026-04-09T15:52:52.866Z" },
 ]
 
 [[package]]
