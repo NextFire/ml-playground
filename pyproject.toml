@@ -9,10 +9,10 @@ requires-python = ">=3.14"
 dependencies = [
     "accelerate==1.13.0",
     "datasets==4.8.4",
-    "huggingface-hub==1.10.0",
+    "huggingface-hub==1.10.1",
     "torch==2.11.0",
     "torchcodec==0.11.0",
-    "trackio[gpu]==0.21.2",
+    "trackio[gpu]==0.22.0",
     "transformers==5.5.3",
 ]
 
