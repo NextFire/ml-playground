@@ -9,7 +9,7 @@ requires-python = ">=3.14"
 dependencies = []
 
 [tool.uv.workspace]
-members = ["gemma-4", "mms-300m", "qwen3-forcedaligner"]
+members = ["gemma-4", "llm-forcedaligner", "mms-300m", "qwen3-forcedaligner"]
 
 # [tool.uv.sources]
 # torch = { index = "pytorch-cu128" }
