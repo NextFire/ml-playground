@@ -5,7 +5,7 @@ description = "Add your description here"
 requires-python = ">=3.14"
 dependencies = [
     "accelerate==1.13.0",
-    "datasets==4.8.4",
+    "datasets==4.8.5",
     "huggingface-hub==1.12.0",
     "qwen-asr",
     "torch==2.11.0",

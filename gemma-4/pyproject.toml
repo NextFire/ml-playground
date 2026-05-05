@@ -6,7 +6,7 @@ requires-python = ">=3.14"
 dependencies = [
     "accelerate==1.13.0",
     "bitsandbytes==0.49.2",
-    "datasets==4.8.4",
+    "datasets==4.8.5",
     "huggingface-hub==1.12.0",
     "peft==0.19.1",
     "torch==2.11.0",
