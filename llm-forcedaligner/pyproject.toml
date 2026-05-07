@@ -4,10 +4,26 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.14"
 dependencies = [
+    "accelerate==1.13.0",
     "datasets==4.8.5",
+    "kernels==0.14.0",
     "lightning[extra]==2.6.1",
     "torch==2.11.0",
     "torchcodec==0.11.1",
+    "torchvision==0.26.0",
     "trackio[gpu]==0.25.1",
     "transformers==5.7.0",
 ]
+
+[dependency-groups]
+dev = ["ipykernel==7.2.0", "ipywidgets==8.1.8"]
+
+# [tool.uv.sources]
+# torch = { index = "pytorch-cu128" }
+# torchcodec = { index = "pytorch-cu128" }
+# torchvision = { index = "pytorch-cu128" }
+
+# [[tool.uv.index]]
+# name = "pytorch-cu128"
+# url = "https://download.pytorch.org/whl/cu128"
+# explicit = true

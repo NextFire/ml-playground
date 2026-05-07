@@ -6,10 +6,22 @@ from .lightning import KaraokeAlignementsDataModule, LLMForcedAlignerLightning
 
 class LLMForcedAlignerCLI(LightningCLI):
     def add_arguments_to_parser(self, parser: LightningArgumentParser) -> None:
-        parser.link_arguments("model.encoder_model_name", "data.encoder_model_name")
-        parser.link_arguments("model.llm_model_name", "data.llm_model_name")
-        parser.link_arguments("model.out_dim", "data.out_dim")
+        parser.link_arguments("model.encoder_checkpoint", "data.encoder_checkpoint")
+        parser.link_arguments("model.llm_checkpoint", "data.llm_checkpoint")
+        parser.link_arguments("model.max_duration", "data.max_duration")
         parser.link_arguments("model.timestamp_token_id", "data.timestamp_token_id")
+        parser.link_arguments(
+            "model.model",
+            "data.frame_stride_ms",
+            compute_fn=lambda model: model.frame_stride_ms,
+            apply_on="instantiate",
+        )
+        parser.link_arguments(
+            "model.model",
+            "data.out_dim",
+            compute_fn=lambda model: model.out_dim,
+            apply_on="instantiate",
+        )
 
 
 def cli_main():
