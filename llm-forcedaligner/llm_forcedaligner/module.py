@@ -75,6 +75,7 @@ class LLMForcedAligner(nn.Module):
         self,
         *,
         encoder_checkpoint: str,
+        encoder_num_hidden_layers: int,
         llm_checkpoint: str,
         max_duration: int,
         timestamp_token_id: int,
@@ -91,6 +92,7 @@ class LLMForcedAligner(nn.Module):
         )
         self.encoder = Gemma4AudioModel.from_pretrained(
             encoder_checkpoint,
+            config=Gemma4AudioConfig(num_hidden_layers=encoder_num_hidden_layers),
             device_map="auto",
             torch_dtype=torch.bfloat16,
             attn_implementation=attn_implementation,

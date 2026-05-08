@@ -26,6 +26,7 @@ class LLMForcedAlignerLightning(L.LightningModule):
         self,
         *,
         encoder_checkpoint: str = "google/gemma-4-E2B",
+        encoder_num_hidden_layers: int = 12,
         llm_checkpoint: str = "Qwen/Qwen3-0.6B-Base",
         max_duration: int = 300,
         timestamp_token_id: int = 37021,  # ±
@@ -38,6 +39,7 @@ class LLMForcedAlignerLightning(L.LightningModule):
         self.save_hyperparameters()
         self.model = LLMForcedAligner(
             encoder_checkpoint=encoder_checkpoint,
+            encoder_num_hidden_layers=encoder_num_hidden_layers,
             llm_checkpoint=llm_checkpoint,
             max_duration=max_duration,
             timestamp_token_id=timestamp_token_id,
@@ -274,6 +276,9 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
                 # Discretise
                 start_idx = mora["start"] // self.frame_stride_ms
                 end_idx = min(mora["end"] // self.frame_stride_ms, self.out_dim - 1)
+                # Ignore zero-length or negative-length slots
+                if end_idx <= start_idx:
+                    continue
                 # Start slot
                 token_ids.append(self.timestamp_token_id)
                 label_ids.append(start_idx)
