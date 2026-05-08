@@ -1,96 +1,81 @@
 from functools import partial
-from typing import Any, TypedDict
+from typing import Any, TypedDict, Unpack
 
 import lightning as L
 import numpy as np
 import torch
 from datasets import Audio, Dataset, load_dataset
-from lightning.pytorch.utilities.types import OptimizerLRScheduler
 from torch.nn import functional as F
 from torch.utils.data import DataLoader
 from transformers import AutoFeatureExtractor, AutoTokenizer
 
-from .module import LLMForcedAligner
+from .module import LLMForcedAligner, ModelInput
 
 
-class ModelInput(TypedDict):
-    audio_input_features: torch.Tensor  # (B, mel_T, mel_F)
-    audio_attention_mask: torch.Tensor  # (B, mel_T)
-    text_input_ids: torch.Tensor  # (B, S)
-    text_attention_mask: torch.Tensor  # (B, S)
-    labels: torch.Tensor  # (total_slots_in_batch,)
+class ModelInputLightning(ModelInput):
+    labels: torch.Tensor
 
 
 class LLMForcedAlignerLightning(L.LightningModule):
     def __init__(
         self,
         *,
-        encoder_checkpoint: str = "google/gemma-4-E2B",
-        encoder_num_hidden_layers: int = 12,
+        encoder_checkpoint: str = "facebook/mms-300m",
         llm_checkpoint: str = "Qwen/Qwen3-0.6B-Base",
         max_duration: int = 300,
         timestamp_token_id: int = 37021,  # ±
         attn_implementation: str = "sdpa",
-        lr: float = 3e-4,
-        weight_decay: float = 1e-2,
-        warmup_steps: int = 1000,
     ):
         super().__init__()
         self.save_hyperparameters()
         self.model = LLMForcedAligner(
             encoder_checkpoint=encoder_checkpoint,
-            encoder_num_hidden_layers=encoder_num_hidden_layers,
             llm_checkpoint=llm_checkpoint,
             max_duration=max_duration,
             timestamp_token_id=timestamp_token_id,
             attn_implementation=attn_implementation,
         )
-        # self.model.encoder.gradient_checkpointing_enable()
+        self.model.encoder.gradient_checkpointing_enable()
         self.model.llm.gradient_checkpointing_enable()
         self.train()
 
-    def configure_optimizers(self) -> OptimizerLRScheduler:
-        optimizer = torch.optim.AdamW(
-            self.parameters(),
-            lr=self.hparams.lr,  # pyright: ignore[reportAttributeAccessIssue]
-            weight_decay=self.hparams.weight_decay,  # pyright: ignore[reportAttributeAccessIssue]
-        )
-        scheduler = torch.optim.lr_scheduler.LambdaLR(
-            optimizer,
-            lr_lambda=lambda step: min(1.0, (step + 1) / self.hparams.warmup_steps),  # pyright: ignore[reportAttributeAccessIssue]
-        )
-        return {
-            "optimizer": optimizer,
-            "lr_scheduler": {"scheduler": scheduler, "interval": "step"},
-        }
-
-    def forward(self, **kwargs) -> torch.Tensor:
+    def forward(self, **kwargs: Unpack[ModelInput]) -> torch.Tensor:
         return self.model(**kwargs)
 
-    def training_step(self, batch: ModelInput, batch_idx: int) -> torch.Tensor:
+    def training_step(
+        self,
+        batch: ModelInputLightning,
+        batch_idx: int,
+    ) -> torch.Tensor:
         return self._shared_step(batch, batch_idx, stage="train")
 
-    def validation_step(self, batch: ModelInput, batch_idx: int) -> torch.Tensor:
+    def validation_step(
+        self,
+        batch: ModelInputLightning,
+        batch_idx: int,
+    ) -> torch.Tensor:
         return self._shared_step(batch, batch_idx, stage="val")
 
-    def test_step(self, batch: ModelInput, batch_idx: int) -> torch.Tensor:
+    def test_step(
+        self,
+        batch: ModelInputLightning,
+        batch_idx: int,
+    ) -> torch.Tensor:
         return self._shared_step(batch, batch_idx, stage="test")
 
     def _shared_step(
         self,
-        batch: ModelInput,
+        batch: ModelInputLightning,
         batch_idx: int,
         *,
         stage: str,
     ) -> torch.Tensor:
-        # logits: (total_slots_in_batch, out_dim)
         logits = self(
-            audio_input_features=batch["audio_input_features"],
+            audio_input_values=batch["audio_input_values"],
             audio_attention_mask=batch["audio_attention_mask"],
             text_input_ids=batch["text_input_ids"],
             text_attention_mask=batch["text_attention_mask"],
         )
-        # labels: (total_slots_in_batch,)
         labels = batch["labels"]
         loss = F.cross_entropy(logits, labels)
         preds = logits.argmax(dim=-1)
@@ -123,7 +108,7 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
         llm_checkpoint: str,
         max_duration: int,
         timestamp_token_id: int,
-        frame_stride_ms: int,
+        frame_stride_ms: float,
         out_dim: int,
         load_from_cache_file: bool = True,
         batch_size: int = 1,
@@ -217,41 +202,38 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
         batch: list[DatasetRow],
         *,
         dynamic_slot_prob: float = 0.0,
-    ) -> ModelInput:
+    ) -> ModelInputLightning:
         audio_arrays: list[np.ndarray] = []
-        sampling_rates: list[int] = []
         all_token_ids: list[list[int]] = []
         all_labels: list[torch.Tensor] = []
+
         for example in batch:
             audio = example["audio"]
             audio_arrays.append(audio["array"])  # pyright: ignore[reportIndexIssue]
-            sampling_rates.append(audio["sampling_rate"])  # pyright: ignore[reportIndexIssue]
             token_ids, label_ids = self._build_text_and_labels(
                 example["morae"],
                 dynamic_slot_prob=dynamic_slot_prob,
             )
             all_token_ids.append(token_ids)
             all_labels.append(torch.tensor(label_ids))
+
         fe_out = self.feature_extractor(
             audio_arrays,
-            sampling_rate=sampling_rates,
-            truncation=False,
+            sampling_rate=self.feature_extractor.sampling_rate,
             padding=True,
-            pad_to_multiple_of=None,
             return_tensors="pt",
         )
-        # (B, S) — tokenizer.pad() handles padding_value and returns attention_mask
+
         text_padded = self.tokenizer.pad(
             [{"input_ids": token_ids} for token_ids in all_token_ids],
             return_tensors="pt",
         )
-        # Labels have variable slot count per sample; concatenate to align with
-        # the flattened slot_hidden produced by the model forward.
-        # (total_slots_in_batch,)
+
         labels = torch.cat(all_labels)
+
         return {
-            "audio_input_features": fe_out["input_features"],
-            "audio_attention_mask": fe_out["input_features_mask"],
+            "audio_input_values": fe_out["input_values"],
+            "audio_attention_mask": fe_out["attention_mask"],
             "text_input_ids": text_padded["input_ids"],
             "text_attention_mask": text_padded["attention_mask"],
             "labels": labels,
@@ -274,8 +256,8 @@ class KaraokeAlignementsDataModule(L.LightningDataModule):
             # Dynamic slot insertion: always insert when dynamic is off; otherwise 50% chance
             if (not apply_dynamic) or (np.random.random() < 0.5):
                 # Discretise
-                start_idx = mora["start"] // self.frame_stride_ms
-                end_idx = min(mora["end"] // self.frame_stride_ms, self.out_dim - 1)
+                start_idx = int(mora["start"] / self.frame_stride_ms)
+                end_idx = min(int(mora["end"] / self.frame_stride_ms), self.out_dim - 1)
                 # Ignore zero-length or negative-length slots
                 if end_idx <= start_idx:
                     continue

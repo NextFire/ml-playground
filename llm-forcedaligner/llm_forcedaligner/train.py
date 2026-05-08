@@ -26,11 +26,7 @@ class LLMForcedAlignerCLI(LightningCLI):
 
 def cli_main():
     torch.set_float32_matmul_precision("high")
-    _ = LLMForcedAlignerCLI(
-        LLMForcedAlignerLightning,
-        KaraokeAlignementsDataModule,
-        auto_configure_optimizers=False,
-    )
+    _ = LLMForcedAlignerCLI(LLMForcedAlignerLightning, KaraokeAlignementsDataModule)
 
 
 if __name__ == "__main__":
