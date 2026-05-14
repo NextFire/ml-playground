@@ -7,6 +7,7 @@ members = [
     "gemma-4",
     "llm-forcedaligner",
     "ml-playground",
+    "mms",
     "qwen3-forcedaligner",
 ]
 
@@ -1509,6 +1510,43 @@ wheels = [
 name = "ml-playground"
 version = "0.1.0"
 source = { virtual = "." }
+
+[[package]]
+name = "mms"
+version = "0.1.0"
+source = { virtual = "mms" }
+dependencies = [
+    { name = "accelerate" },
+    { name = "datasets" },
+    { name = "huggingface-hub" },
+    { name = "torch" },
+    { name = "torchcodec" },
+    { name = "trackio", extra = ["gpu"] },
+    { name = "transformers" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "ipykernel" },
+    { name = "ipywidgets" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "accelerate", specifier = "==1.13.0" },
+    { name = "datasets", specifier = "==4.8.5" },
+    { name = "huggingface-hub", specifier = "==1.14.0" },
+    { name = "torch", specifier = "==2.11.0" },
+    { name = "torchcodec", specifier = "==0.11.1" },
+    { name = "trackio", extras = ["gpu"], specifier = "==0.25.1" },
+    { name = "transformers", specifier = "==5.8.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "ipykernel", specifier = "==7.2.0" },
+    { name = "ipywidgets", specifier = "==8.1.8" },
+]
 
 [[package]]
 name = "mpmath"
