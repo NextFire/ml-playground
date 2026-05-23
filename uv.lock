@@ -1182,7 +1182,7 @@ wheels = [
 
 [[package]]
 name = "kernels"
-version = "0.14.0"
+version = "0.14.1"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "huggingface-hub" },
@@ -1191,9 +1191,9 @@ dependencies = [
     { name = "pyyaml" },
     { name = "tomlkit" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/88/b4/fac70eece399d08f87384103d08a946bfc5e82d92dd19a1890730ef53815/kernels-0.14.0.tar.gz", hash = "sha256:7adefa3d8987a7c4c9f977a9bc6729cc1f956180b3d034c9677ea062633a75da", size = 62924, upload-time = "2026-05-06T08:22:26.891Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/cd/16/d9c473289d72d07a5c8e00367e5de9326bf0135e65ba74a235e2eb2510f2/kernels-0.14.1.tar.gz", hash = "sha256:ba21b7b509b7a0c2d2c7a0efd546e9dda2b1022ed5ff2b8fde8e94d7637754d3", size = 62800, upload-time = "2026-05-14T06:42:36.234Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/8d/22/9348602bd4065c74a9d625faf8a87dd44a440d10121538038512c248540b/kernels-0.14.0-py3-none-any.whl", hash = "sha256:510f0f10b3372ec225f6810b6f80a33c1dbeff2c11d28c5914ce8244b4aa96b4", size = 58111, upload-time = "2026-05-06T08:22:24.83Z" },
+    { url = "https://files.pythonhosted.org/packages/94/94/fb8cbf1427af4b520ad08a458b6696f1958732761bc284b55273fa3aa684/kernels-0.14.1-py3-none-any.whl", hash = "sha256:be1a91116e14be1e012fc8f47afb51173ee052586a570fba3d594ef0d1b38920", size = 57977, upload-time = "2026-05-14T06:42:35.002Z" },
 ]
 
 [[package]]
@@ -1379,7 +1379,7 @@ dev = [
 requires-dist = [
     { name = "accelerate", specifier = "==1.13.0" },
     { name = "datasets", specifier = "==4.8.5" },
-    { name = "kernels", specifier = "==0.14.0" },
+    { name = "kernels", specifier = "==0.14.1" },
     { name = "lightning", extras = ["extra"], specifier = "==2.6.1" },
     { name = "torch", specifier = "==2.11.0" },
     { name = "torchcodec", specifier = "==0.11.1" },
