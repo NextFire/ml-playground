@@ -4,11 +4,5 @@
     "github>NextFire/renovate-config",
     "github>NextFire/renovate-config:python"
   ],
-  "ignoreTests": true,
-  "packageRules": [
-    {
-      "matchDepNames": ["trackio"],
-      "automerge": false
-    }
-  ]
+  "ignoreTests": true
 }
