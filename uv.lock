@@ -774,7 +774,7 @@ requires-dist = [
     { name = "peft", specifier = "==0.19.1" },
     { name = "torch", specifier = "==2.11.0" },
     { name = "torchvision", specifier = "==0.26.0" },
-    { name = "trackio", extras = ["gpu"], specifier = "==0.25.1" },
+    { name = "trackio", extras = ["gpu"], specifier = "==0.26.0" },
     { name = "transformers", specifier = "==5.9.0" },
     { name = "trl", specifier = "==1.4.0" },
 ]
@@ -1384,7 +1384,7 @@ requires-dist = [
     { name = "torch", specifier = "==2.11.0" },
     { name = "torchcodec", specifier = "==0.11.1" },
     { name = "torchvision", specifier = "==0.26.0" },
-    { name = "trackio", extras = ["gpu"], specifier = "==0.25.1" },
+    { name = "trackio", extras = ["gpu"], specifier = "==0.26.0" },
     { name = "transformers", specifier = "==5.9.0" },
 ]
 
@@ -1538,7 +1538,7 @@ requires-dist = [
     { name = "huggingface-hub", specifier = "==1.16.1" },
     { name = "torch", specifier = "==2.11.0" },
     { name = "torchcodec", specifier = "==0.11.1" },
-    { name = "trackio", extras = ["gpu"], specifier = "==0.25.1" },
+    { name = "trackio", extras = ["gpu"], specifier = "==0.26.0" },
     { name = "transformers", specifier = "==5.9.0" },
 ]
 
@@ -2458,7 +2458,7 @@ requires-dist = [
     { name = "qwen-asr", git = "https://github.com/One-sixth/Qwen3-ASR.git?branch=support-transformers-v5.4" },
     { name = "torch", specifier = "==2.11.0" },
     { name = "torchcodec", specifier = "==0.11.1" },
-    { name = "trackio", extras = ["gpu"], specifier = "==0.25.1" },
+    { name = "trackio", extras = ["gpu"], specifier = "==0.26.0" },
     { name = "transformers", specifier = "==5.9.0" },
 ]
 
@@ -2966,7 +2966,7 @@ wheels = [
 
 [[package]]
 name = "trackio"
-version = "0.25.1"
+version = "0.26.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "gradio-client" },
@@ -2979,7 +2979,7 @@ dependencies = [
     { name = "uvicorn", extra = ["standard"] },
 ]
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/dc/9a/80caa250ef9e0e465db883958764c9b27a413c8b246349f60c237b820201/trackio-0.25.1-py3-none-any.whl", hash = "sha256:d019b79a8dfb14264db1055b7e9b2681984138b827dabd5ec01585c0bd24116d", size = 1653922, upload-time = "2026-04-26T02:13:41.814Z" },
+    { url = "https://files.pythonhosted.org/packages/a6/90/b40e4e0d8850d7cb5630bc3d5f13cd49bd680250931af33e61162701f94c/trackio-0.26.0-py3-none-any.whl", hash = "sha256:2e10e65ead4048b5977fb1b4fba6b1845cb25148697ec1d91b914c7ffa056bd8", size = 1668713, upload-time = "2026-05-23T00:19:33.322Z" },
 ]
 
 [package.optional-dependencies]

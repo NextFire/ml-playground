@@ -10,7 +10,7 @@ dependencies = [
     "qwen-asr",
     "torch==2.11.0",
     "torchcodec==0.11.1",
-    "trackio[gpu]==0.25.1",
+    "trackio[gpu]==0.26.0",
     "transformers==5.9.0",
 ]
 
