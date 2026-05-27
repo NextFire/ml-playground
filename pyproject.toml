@@ -12,11 +12,12 @@ dependencies = []
 members = ["gemma-4", "llm-forcedaligner", "mms", "qwen3-forcedaligner"]
 
 # [tool.uv.sources]
-# torch = { index = "pytorch-cu128" }
-# torchcodec = { index = "pytorch-cu128" }
-# torchvision = { index = "pytorch-cu128" }
+# torch = { index = "pytorch-cu126" }
+# torchaudio = { index = "pytorch-cu126" }
+# torchcodec = { index = "pytorch-cu126" }
+# torchvision = { index = "pytorch-cu126" }
 
 # [[tool.uv.index]]
-# name = "pytorch-cu128"
-# url = "https://download.pytorch.org/whl/cu128"
+# name = "pytorch-cu126"
+# url = "https://download.pytorch.org/whl/cu126"
 # explicit = true
