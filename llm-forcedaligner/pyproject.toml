@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.14"
 dependencies = [
-    "accelerate==1.13.0",
+    "accelerate==1.14.0",
     "datasets==4.8.5",
     "kernels==0.14.1",
     "lightning[extra]==2.6.5",
