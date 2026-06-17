@@ -11,7 +11,7 @@ dependencies = [
     "torch==2.12.0",
     "torchcodec==0.13.0",
     "trackio[gpu]==0.26.0",
-    "transformers==5.12.0",
+    "transformers==5.12.1",
 ]
 
 [dependency-groups]
