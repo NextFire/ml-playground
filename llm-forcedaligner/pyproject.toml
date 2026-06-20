@@ -10,7 +10,7 @@ dependencies = [
     "lightning[extra]==2.6.5",
     "torch==2.12.1",
     "torchcodec==0.13.0",
-    "torchvision==0.27.0",
+    "torchvision==0.27.1",
     "trackio[gpu]==0.26.0",
     "transformers==5.12.1",
 ]
