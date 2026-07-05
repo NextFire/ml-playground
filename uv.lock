@@ -783,7 +783,7 @@ requires-dist = [
     { name = "accelerate", specifier = "==1.14.0" },
     { name = "bitsandbytes", specifier = "==0.49.2" },
     { name = "datasets", specifier = "==4.8.5" },
-    { name = "huggingface-hub", specifier = "==1.21.0" },
+    { name = "huggingface-hub", specifier = "==1.22.0" },
     { name = "peft", specifier = "==0.19.1" },
     { name = "torch", specifier = "==2.12.1" },
     { name = "torchvision", specifier = "==0.27.1" },
@@ -960,7 +960,7 @@ wheels = [
 
 [[package]]
 name = "huggingface-hub"
-version = "1.21.0"
+version = "1.22.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "click" },
@@ -971,12 +971,11 @@ dependencies = [
     { name = "packaging" },
     { name = "pyyaml" },
     { name = "tqdm" },
-    { name = "typer" },
     { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/8f/77/ce3331f40cb2d021fe9b24c46c41e72faf74493621138e5eddac12bf5e1c/huggingface_hub-1.21.0.tar.gz", hash = "sha256:a44f222cd8f2f7c2eade30b5e7a04cac984a3235fa61ea87a0a5a31db77d561f", size = 861572, upload-time = "2026-06-25T13:09:26.356Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/77/ea/dc54b4dda5841cb3a7812a178695be776e7c15c597887c2ed892f17d015a/huggingface_hub-1.22.0.tar.gz", hash = "sha256:e2dfe5fe1ec3b87ba2709aa34555b23e3f3f6ad4d7255238e13ddb8348e6bbfa", size = 914232, upload-time = "2026-07-03T09:46:44.685Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/4f/85/b505a99a133d9f99d21af182af416e9baef70bdeef019983479651e494c2/huggingface_hub-1.21.0-py3-none-any.whl", hash = "sha256:eadaa3678c512c82aea69e8675d90a184861e68de32f1105668628b4dce0e7cd", size = 721078, upload-time = "2026-06-25T13:09:24.402Z" },
+    { url = "https://files.pythonhosted.org/packages/64/9c/a1a377265abd8b823a2c661c665028ccb6b9fba1ca9d08e52ff679c20ecd/huggingface_hub-1.22.0-py3-none-any.whl", hash = "sha256:b09e19309ae09ee0a71892701c4fe70af39ab4e00817321dc62f2289a977249b", size = 765085, upload-time = "2026-07-03T09:46:42.832Z" },
 ]
 
 [[package]]
@@ -1559,7 +1558,7 @@ dev = [
 requires-dist = [
     { name = "accelerate", specifier = "==1.14.0" },
     { name = "datasets", specifier = "==4.8.5" },
-    { name = "huggingface-hub", specifier = "==1.21.0" },
+    { name = "huggingface-hub", specifier = "==1.22.0" },
     { name = "kernels", specifier = "==0.14.1" },
     { name = "torch", specifier = "==2.12.1" },
     { name = "torchcodec", specifier = "==0.13.0" },
@@ -2504,7 +2503,7 @@ dev = [
 requires-dist = [
     { name = "accelerate", specifier = "==1.14.0" },
     { name = "datasets", specifier = "==4.8.5" },
-    { name = "huggingface-hub", specifier = "==1.21.0" },
+    { name = "huggingface-hub", specifier = "==1.22.0" },
     { name = "qwen-asr", git = "https://github.com/One-sixth/Qwen3-ASR.git?branch=support-transformers-v5.4" },
     { name = "torch", specifier = "==2.12.1" },
     { name = "torchcodec", specifier = "==0.13.0" },
