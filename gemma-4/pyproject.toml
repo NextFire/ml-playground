@@ -13,7 +13,7 @@ dependencies = [
     "torchvision==0.27.1",
     "trackio[gpu]==0.26.0",
     "transformers==5.14.1",
-    "trl==1.9.1",
+    "trl==1.9.2",
 ]
 
 [dependency-groups]
