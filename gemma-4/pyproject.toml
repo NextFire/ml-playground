@@ -8,7 +8,7 @@ dependencies = [
     "bitsandbytes==0.49.2",
     "datasets==4.8.5",
     "huggingface-hub==1.29.0",
-    "peft==0.19.1",
+    "peft==0.20.0",
     "torch==2.13.0",
     "torchvision==0.27.1",
     "trackio[gpu]==0.26.0",
