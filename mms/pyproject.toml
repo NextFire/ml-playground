@@ -10,7 +10,7 @@ dependencies = [
     "kernels==0.14.1",
     "torch==2.13.0",
     "torchcodec==0.13.0",
-    "trackio[gpu]==0.26.0",
+    "trackio[gpu]==0.37.0",
     "transformers==5.16.1",
 ]
 

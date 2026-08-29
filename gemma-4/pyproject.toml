@@ -11,7 +11,7 @@ dependencies = [
     "peft==0.19.1",
     "torch==2.13.0",
     "torchvision==0.27.1",
-    "trackio[gpu]==0.26.0",
+    "trackio[gpu]==0.37.0",
     "transformers==5.16.1",
     "trl==1.12.0",
 ]
