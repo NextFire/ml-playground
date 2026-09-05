@@ -8,9 +8,9 @@ dependencies = [
     "datasets==4.8.5",
     "kernels==0.14.1",
     "lightning[extra]==2.6.5",
-    "torch==2.13.0",
-    "torchcodec==0.13.0",
-    "torchvision==0.27.1",
+    "torch==2.14.0",
+    "torchcodec==0.16.0",
+    "torchvision==0.29.0",
     "trackio[gpu]==0.26.0",
     "transformers==5.16.1",
 ]
